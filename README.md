@@ -55,6 +55,7 @@ $script = <<SCRIPT
   yum -y install epel-release
   yum -y install git
   yum -y install nginx
+  yum -y install ansible
   echo "hello, vagrant" > /usr/share/nginx/html/index.html
   systemctl start nginx
 SCRIPT
@@ -79,14 +80,18 @@ vagrant ssh
 ansible 파일이 있는 저장소를 Clone 한다.
 
 ```
-git clone https://github.com/junior-study/ansible-playbook-sample
+git clone https://github.com/jayden-lee/ansible-playbook-sample.git
 ```
 
 Github에서 가져온 저장소로 이동해서 playbook을 실행한다.
 
 ```
-cd ansible-playbook-sample
+cd ansible-playbook-sample/ansible
 ansible-playbook -i development site.yml
 ```
+
+호스트 PC 웹 브라우저를 실행해서 <code>localhost:3000</code> 경로에 접속하면 아래와 같은 이미지처럼 "hello, development ansible" 메시지가 표시된다.
+
+![ansible-playbook-dev-result](https://user-images.githubusercontent.com/43853352/73551974-bc16ae00-448a-11ea-9ee4-0a61f94e98cb.png)
 
 <code>-i</code> 옵션은 사용할 특정 인벤토리 호스트를 명시하기 위해서 사용한다. 현재 예제에서는 development와 production 두 개로 구성되어 있다. 더 많은 옵션이 궁금하다면, [ansible-playbook](https://docs.ansible.com/ansible/latest/cli/ansible-playbook.html) 문서를 참고하자.
