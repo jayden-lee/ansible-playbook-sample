@@ -11,9 +11,6 @@ end
 
 $script = <<SCRIPT
   yum -y install epel-release
-  yum -y install nginx
   yum -y install git
   yum -y install ansible
-  echo "hello, vagrant" > /usr/share/nginx/html/index.html
-  systemctl start nginx
 SCRIPT

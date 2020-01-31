@@ -54,10 +54,7 @@ end
 $script = <<SCRIPT
   yum -y install epel-release
   yum -y install git
-  yum -y install nginx
   yum -y install ansible
-  echo "hello, vagrant" > /usr/share/nginx/html/index.html
-  systemctl start nginx
 SCRIPT
 ```
 
@@ -92,6 +89,13 @@ ansible-playbook -i development site.yml
 
 호스트 PC 웹 브라우저를 실행해서 <code>localhost:3000</code> 경로에 접속하면 아래와 같은 이미지처럼 "hello, development ansible" 메시지가 표시된다.
 
-![ansible-playbook-dev-result](https://user-images.githubusercontent.com/43853352/73551974-bc16ae00-448a-11ea-9ee4-0a61f94e98cb.png)
+![ansible-playbook-dev-result](https://user-images.githubusercontent.com/43853352/73552215-2deef780-448b-11ea-9147-23d038fec5b1.png)
 
 <code>-i</code> 옵션은 사용할 특정 인벤토리 호스트를 명시하기 위해서 사용한다. 현재 예제에서는 development와 production 두 개로 구성되어 있다. 더 많은 옵션이 궁금하다면, [ansible-playbook](https://docs.ansible.com/ansible/latest/cli/ansible-playbook.html) 문서를 참고하자.
+
+### dry-run 모드 실행
+<code>--check</code> 옵션으로 dry-run 모드를 실행하고, <code>--diff</code> 옵션은 변경 차이를 표시한다. dry-run 모드로 실행하면 변경된 사항을 실제 반영하지 않고 변경 사항을 파악하기 위해서 사용한다.
+
+```
+ansible-playbook -i development site.yml --check --diff
+```
